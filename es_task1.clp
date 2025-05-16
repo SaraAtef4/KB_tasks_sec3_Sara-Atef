@@ -1,20 +1,14 @@
-CLIPS> (deftemplate animal
-(slot type (type SYMBOL) (allowed-values dog cat horse rabbit bird)))
-CLIPS> (defrule check_animal
-(animal (type ?t))
-(test (and (neq ?t dog) (neq ?t cat)))
-   =>
-   (printout t "This animal is a " ?t crlf))
-CLIPS> (assert (animal (type dog)))
+         CLIPS (6.30 3/17/15)
+CLIPS>  ( deftemplate animal (slot name) (slot type))
+CLIPS> (defrule chech-animal
+( animal (name ?name) (type ?type&~dog&~cat))
+=>
+(printout t ?name "is a" ?type crlf))
+CLIPS> (assert (animal (name toty) (type cat)))
 <Fact-1>
-CLIPS> (assert (animal (type rabbit)))
+CLIPS> (run)
+CLIPS> (assert (animal (name faras) (type hourse)))
 <Fact-2>
-CLIPS> (assert (animal (type horse)))
-<Fact-3>
 CLIPS> (run)
-This animal is a horse
-This animal is a rabbit
-CLIPS> (assert (animal (type cat)))
-<Fact-4>
-CLIPS> (run)
-CLIPS>
+farasis ahourse
+CLIPS> 
